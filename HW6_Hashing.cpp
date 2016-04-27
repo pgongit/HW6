@@ -62,13 +62,19 @@ public:
 		outFile.open(fileName);
 		if (outFile.is_open() == true)
 		{
+			bool first = true;
 			for (int i = 0; i < TABLE_SIZE; i++)
 			{
 				if (table[i] != NULL)
 				{
 					try
 					{	//write index, key, and value to file				
-				        outFile << i  << " " << table[i]->getKey() << " " << table[i]->getValue() << endl;
+						if (first == false)
+						{
+							outFile << ",";
+						}
+						outFile << table[i]->getValue();
+						first = false;
 					}
 					catch (int e)
 					{
